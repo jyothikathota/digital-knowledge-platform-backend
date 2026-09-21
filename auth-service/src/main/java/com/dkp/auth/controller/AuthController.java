@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Map;
 
 @RestController
+@CrossOrigin(origins = "https://digital-knowledge-platform-is9l.onrender.com")
 @RequestMapping("/api/auth")
 public class AuthController {
 
@@ -26,7 +27,9 @@ public class AuthController {
      * Accessible publicly.
      */
     @PostMapping("/register")
-    public ResponseEntity<AuthResponse> register(@Valid @RequestBody RegisterRequest request) {
+    public ResponseEntity<AuthResponse> register(
+            @Valid @RequestBody RegisterRequest request) {
+
         AuthResponse response = authService.register(request);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
@@ -36,7 +39,9 @@ public class AuthController {
      * Returns JWT upon successful credentials verification.
      */
     @PostMapping("/login")
-    public ResponseEntity<AuthResponse> login(@Valid @RequestBody LoginRequest request) {
+    public ResponseEntity<AuthResponse> login(
+            @Valid @RequestBody LoginRequest request) {
+
         AuthResponse response = authService.login(request);
         return ResponseEntity.ok(response);
     }
@@ -45,8 +50,11 @@ public class AuthController {
      * Helper endpoint to validate a JWT token.
      */
     @GetMapping("/validate")
-    public ResponseEntity<Map<String, Object>> validateToken(@RequestParam String token) {
+    public ResponseEntity<Map<String, Object>> validateToken(
+            @RequestParam String token) {
+
         boolean valid = authService.validateToken(token);
+
         return ResponseEntity.ok(Map.of(
                 "valid", valid,
                 "token", token
