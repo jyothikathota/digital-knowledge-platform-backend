@@ -36,7 +36,9 @@ public class SecurityConfig {
         CorsConfiguration configuration = new CorsConfiguration();
 
         configuration.setAllowedOrigins(List.of(
-                "http://localhost:5173"
+                "http://localhost:5173",
+                "http://localhost:5174",
+                "https://digital-knowledge-platform-is9l.onrender.com"
         ));
 
         configuration.setAllowedMethods(List.of(

@@ -12,7 +12,11 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Map;
 
 @RestController
-@CrossOrigin(origins = "https://digital-knowledge-platform-is9l.onrender.com")
+@CrossOrigin(origins = {
+        "http://localhost:5173",
+    "http://localhost:5174",
+        "https://digital-knowledge-platform-is9l.onrender.com"
+})
 @RequestMapping("/api/auth")
 public class AuthController {
 
